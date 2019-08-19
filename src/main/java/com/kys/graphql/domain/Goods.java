@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @Table(name = "GOODS", uniqueConstraints = {@UniqueConstraint(name="GOODS_ID", columnNames = {"GOODS_ID"})})
 @Getter
 @Setter

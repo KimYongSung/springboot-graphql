@@ -7,7 +7,6 @@ import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 
-@Entity
 @Table(name = "MEMBER", uniqueConstraints = {@UniqueConstraint(name="ID", columnNames = {"ID"})})
 @Getter
 @Setter
