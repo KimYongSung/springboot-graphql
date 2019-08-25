@@ -1,0 +1,27 @@
+package com.kys.graphql.domain;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Table(name = "BOOK", uniqueConstraints = {@UniqueConstraint(name="BOOK_ID", columnNames = {"BOOK_ID"})})
+@Getter
+@Setter
+@NoArgsConstructor
+public class Book {
+
+    @Id
+    @Column(name = "BOOK_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "NAME")
+    private String name;
+
+    @Column(name = "PAGE_COUNT")
+    private Integer pageCount;
+
+
+}

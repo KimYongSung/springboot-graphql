@@ -11,6 +11,22 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/tutorial-core" />
+            <option value="$PROJECT_DIR$/tutorial-domain" />
+            <option value="$PROJECT_DIR$/tutorial-h2" />
+            <option value="$PROJECT_DIR$/tutorial-mvc-api" />
+          </set>
+        </option>
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tutorial-mvc-api" />
+        <option name="gradleHome" value="D:/Program Files/gradle-5.4.1-bin/gradle-5.4.1" />
+        <option name="gradleJvm" value="11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/tutorial-mvc-api" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
