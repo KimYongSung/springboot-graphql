@@ -25,9 +25,9 @@ allprojects {
 	}
 
 	dependencies {
+		implementation project(':tutorial-core');
 		implementation 'org.projectlombok:lombok:1.18.6'
 		annotationProcessor 'org.projectlombok:lombok:1.18.6'
-		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	}
 }
 
@@ -40,6 +40,5 @@ project(':tutorial-mvc-api'){
 project(':tutorial-domain'){
 	dependencies {
 		api project(':tutorial-h2')
-		api project(':tutorial-core')
 	}
 }

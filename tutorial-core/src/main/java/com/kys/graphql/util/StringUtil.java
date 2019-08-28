@@ -107,7 +107,6 @@ public class StringUtil {
      * 정수형이 아니거나 null 일 경우 -1로 변환
      * 
      * @param value
-     * @param defaultValue
      * @return
      */
     public static int toInt(String value) {
@@ -115,7 +114,7 @@ public class StringUtil {
     }
 
     public static boolean isNull(Object value) {
-        return (value == null) ? true : false;
+        return value == null;
     }
 
     /**
@@ -318,24 +317,6 @@ public class StringUtil {
             return -1;
         }
         return str.indexOf(searchStr);
-    }
-
-    /**
-     * 전화번호 노출 포멧 변경
-     * 
-     * @param telNum
-     * @return
-     */
-    public static String telNumberConverter(String telNum) {
-        if (StringUtil.isNull(telNum)) {
-            return "";
-        } else if (telNum.length() == 8) {
-            return telNum.replaceFirst("^([0-9]{4})([0-9]{4})$", "$1-$2");
-        } else if (telNum.length() == 12) {
-            return telNum.replaceFirst("^([0-9]{4})([0-9]{4})([0-9]{4})$", "$1-$2-$3");
-        } else {
-            return telNum.replaceFirst("(^02|[0-9]{3})([0-9]{3,4})([0-9]{4})$", "$1-$2-$3");
-        }
     }
 
     /**
