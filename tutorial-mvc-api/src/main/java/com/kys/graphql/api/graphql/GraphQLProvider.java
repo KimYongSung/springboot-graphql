@@ -1,5 +1,6 @@
 package com.kys.graphql.api.graphql;
 
+import com.kys.graphql.api.author.AuthorDataFetchers;
 import com.kys.graphql.util.ResourceUtil;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
@@ -20,8 +21,9 @@ public class GraphQLProvider implements InitializingBean, FactoryBean<GraphQL> {
 
     private GraphQL graphQL;
 
-    @Autowired
     private GraphQLDataFetchers graphQLDataFetchers;
+
+    private AuthorDataFetchers authorDataFetchers;
 
     @Override
     public void afterPropertiesSet() throws Exception {

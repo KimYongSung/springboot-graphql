@@ -1,5 +1,6 @@
 package com.kys.graphql.api.book;
 
+import com.kys.graphql.api.exception.BookNotFoundException;
 import com.kys.graphql.domain.Book;
 import com.kys.graphql.domain.repository.BookCrudRepository;
 import graphql.schema.DataFetcher;
@@ -12,15 +13,14 @@ public class BookDataFetchers {
 
     private BookCrudRepository crudRepository;
 
+    /**
+     * BookId로 Book 정보 조회
+     * @return
+     */
     public DataFetcher<Book> getBookByIdDataFetcher() {
-
         return dataFetchingEnvironment -> {
-            Long bookId = dataFetchingEnvironment.getArgument("id");
-            /*return books.stream()
-                    .filter(book -> book.get("id").equals(bookId))
-                    .findFirst()
-                    .orElse(null);*/
-            return null;
+            return crudRepository.findById(dataFetchingEnvironment.getArgument("id"))
+                                 .orElseThrow(BookNotFoundException::new);
         };
     }
 }
