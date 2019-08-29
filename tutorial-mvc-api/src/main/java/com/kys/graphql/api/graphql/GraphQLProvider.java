@@ -1,6 +1,7 @@
 package com.kys.graphql.api.graphql;
 
-import com.kys.graphql.app.util.ResourceUtil;
+import com.kys.graphql.api.author.AuthorDataFetchers;
+import com.kys.graphql.util.ResourceUtil;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
@@ -20,14 +21,14 @@ public class GraphQLProvider implements InitializingBean, FactoryBean<GraphQL> {
 
     private GraphQL graphQL;
 
-    @Autowired
     private GraphQLDataFetchers graphQLDataFetchers;
+
+    private AuthorDataFetchers authorDataFetchers;
 
     @Override
     public void afterPropertiesSet() throws Exception {
         String schemaStr = ResourceUtil.streamToString("classpath:schema.graphql", StandardCharsets.UTF_8);
-        GraphQLSchema schema = buildSchema(schemaStr);
-        this.graphQL = GraphQL.newGraphQL(schema).build();
+        this.graphQL = GraphQL.newGraphQL(buildSchema(schemaStr)).build();
     }
 
     private GraphQLSchema buildSchema(String schemaStr){

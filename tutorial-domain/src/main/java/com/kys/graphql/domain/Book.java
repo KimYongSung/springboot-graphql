@@ -23,5 +23,8 @@ public class Book {
     @Column(name = "PAGE_COUNT")
     private Integer pageCount;
 
+    @ManyToOne
+    @JoinColumn(name = "AUTHOR_ID")
+    private Author author;
 
 }
