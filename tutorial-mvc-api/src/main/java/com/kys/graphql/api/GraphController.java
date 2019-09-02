@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/com/kys/graphql")
 @AllArgsConstructor
 public class GraphController {
 
     private GraphQL graphQL;
 
-    @PostMapping
+    @PostMapping(value = "/com/kys/graphql")
     public ResponseEntity<Object> graphByQuery(@RequestBody String query){
         return new ResponseEntity<Object>(graphQL.execute(query), HttpStatus.OK);
     }
