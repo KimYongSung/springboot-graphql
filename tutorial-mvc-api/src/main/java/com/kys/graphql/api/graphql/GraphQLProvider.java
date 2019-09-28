@@ -1,9 +1,11 @@
 package com.kys.graphql.api.graphql;
 
 import com.kys.graphql.api.author.AuthorDataFetchers;
+import com.kys.graphql.api.book.BookDataFetchers;
 import com.kys.graphql.util.ResourceUtil;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
+import graphql.schema.PropertyDataFetcher;
 import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
@@ -21,9 +23,11 @@ public class GraphQLProvider implements InitializingBean, FactoryBean<GraphQL> {
 
     private GraphQL graphQL;
 
-    private GraphQLDataFetchers graphQLDataFetchers;
-
+    @Autowired
     private AuthorDataFetchers authorDataFetchers;
+
+    @Autowired
+    private BookDataFetchers bookDataFetchers;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -38,10 +42,9 @@ public class GraphQLProvider implements InitializingBean, FactoryBean<GraphQL> {
     private RuntimeWiring buildWiring(){
         return RuntimeWiring.newRuntimeWiring()
                             .type(newTypeWiring("Query")
-                                    .dataFetcher("bookById", graphQLDataFetchers.getBookByIdDataFetcher()))
+                                    .dataFetcher("bookById", bookDataFetchers.getBookByIdDataFetcher()))
                             .type(newTypeWiring("Book")
-                                    .dataFetcher("author", graphQLDataFetchers.getAuthorDataFetcher())
-                                    .dataFetcher("pageCount", graphQLDataFetchers.getPageCountDataFetcher())
+                                    .dataFetcher("author", authorDataFetchers.getAuthorDataFetcher())
                             )
                             .build();
     }

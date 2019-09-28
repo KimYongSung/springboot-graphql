@@ -11,18 +11,18 @@ public class StringUtil {
     /**
      * 빈 문자열 <code>""</code>.
      */
-    public static final String EMPTY = "";
+    private static final String EMPTY = "";
 
     /**
      * 빈 배열 <code>[]</code>.
      */
-    public static final String[] EMPTY_ARR = new String[0];
+    private static final String[] EMPTY_ARR = new String[0];
 
     /**
      * null 일 경우 "" 으로 변경
      * 
-     * @param str
-     * @return
+     * @param str 검사할 문자열
+     * @return null 일 경우 "" 공백 리턴, null이 아닐 경우 문자열 리턴
      */
     public static String nullToEmpty(String str) {
         return nullToStr(str, EMPTY).trim();
@@ -31,8 +31,8 @@ public class StringUtil {
     /**
      * null 일 경우 "" 으로 변경
      * 
-     * @param str
-     * @return
+     * @param obj 검사할 object
+     * @return null 일 경우 공백문자열 리턴
      */
     public static String nullToEmpty(Object obj) {
         return (obj == null) ? EMPTY : obj.toString();
@@ -46,24 +46,18 @@ public class StringUtil {
      * @return
      */
     public static String nullToStr(String str, String replace) {
-        if (str == null || str.length() == 0)
-            return replace;
-        else
-            return str;
+        return isNull(str) ? replace : str;
     }
 
     /**
      * null 일 경우 replace 문자열로 변경
      * 
      * @param str
-     * @param replace
+     * @param nullStr
      * @return
      */
     public static String nullToStr(Object str, String nullStr) {
-        if (ObjectUtil.isNull(str))
-            return nullStr;
-        else
-            return str.toString();
+        return ObjectUtil.isNull(str) ? nullStr : str.toString();
     }
 
     /**
@@ -85,6 +79,8 @@ public class StringUtil {
         for (int index = 0; index < tokenCount; index++) {
             arr[index] = token.nextToken();
         }
+
+
         return arr;
     }
 

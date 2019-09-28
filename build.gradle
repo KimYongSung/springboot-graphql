@@ -1,18 +1,22 @@
 buildscript {
 	ext {
 		springBootVersion = '2.1.7.RELEASE'
+		managementVersion = '1.0.8.RELEASE'
 	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("io.spring.gradle:dependency-management-plugin:${managementVersion}")
 	}
 }
 
 allprojects {
+
 	group 'com.kys.graphql'
 	version '1.0'
+
 	apply plugin: 'java'
 	apply plugin: 'java-library'
 	apply plugin: 'org.springframework.boot'
@@ -25,20 +29,29 @@ allprojects {
 	}
 
 	dependencies {
-		implementation project(':tutorial-core');
-		implementation 'org.projectlombok:lombok:1.18.6'
-		annotationProcessor 'org.projectlombok:lombok:1.18.6'
+		compile('org.projectlombok:lombok:1.18.6')
+		testCompile('org.assertj:assertj-core:3.12.2')
+		testCompile('junit:junit:4.12')
+		annotationProcessor('org.projectlombok:lombok:1.18.6')
 	}
 }
 
 project(':tutorial-mvc-api'){
 	dependencies {
-		implementation project(':tutorial-domain')
+		compile project(':tutorial-core')
+		compile project(':tutorial-domain')
+	}
+}
+
+project(':tutorial-h2'){
+	dependencies {
+		runtimeOnly('com.h2database:h2')
 	}
 }
 
 project(':tutorial-domain'){
 	dependencies {
-		api project(':tutorial-h2')
+		compile project(':tutorial-core')
+		compile project(':tutorial-h2')
 	}
 }
